@@ -5,7 +5,7 @@ import * as https from "https";
 import fetch from "node-fetch";
 import { Telegraf } from "telegraf";
 import { message } from "telegraf/filters";
-
+import http from 'http';
 // Load environment variables from .env file
 config();
 
@@ -167,3 +167,9 @@ bot
 // Enable graceful stop
 process.once("SIGINT", () => bot.stop("SIGINT"));
 process.once("SIGTERM", () => bot.stop("SIGTERM"));
+
+const server = http.createServer((req, res) => {
+  res.writeHead(200);
+  res.end('Bot is alive');
+});
+server.listen(process.env.PORT || 10000);
