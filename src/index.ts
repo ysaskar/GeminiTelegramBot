@@ -123,7 +123,7 @@ bot.on(message("text"), async (ctx) => {
       : ctx.message.text;
 
     const result = await ai.models.generateContent({
-      model: "gemini-2.0-flash-exp",
+      model: MODEL,
       contents: prompt,
       config: {
         responseModalities: isImageGeneration ? ["Text", "Image"] : ["Text"],
