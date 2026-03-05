@@ -11,6 +11,7 @@ config();
 
 const BOT_TOKEN = process.env.BOT_TOKEN;
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const MODEL = process.env.MODEL;
 
 if (!BOT_TOKEN) throw new Error("BOT_TOKEN environment variable not set");
 if (!GEMINI_API_KEY)
@@ -65,7 +66,7 @@ bot.on(message("photo"), async (ctx) => {
 
     const prompt = ctx.message.caption || "What do you see in this image?";
     const result = await ai.models.generateContent({
-      model: "gemini-2.0-flash-exp",
+      model: MODEL,
       contents: [
         prompt,
         {
